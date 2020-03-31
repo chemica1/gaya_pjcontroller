@@ -30,6 +30,8 @@ class Ui_MainWindow
 public:
     QAction *actionConnect;
     QAction *actionDisconnect;
+    QAction *actionPowerOnAll;
+    QAction *actionPowerOffAll;
     QWidget *centralWidget;
     QGroupBox *groupProjectors;
     QCheckBox *select_all;
@@ -58,11 +60,23 @@ public:
         actionDisconnect = new QAction(MainWindow);
         actionDisconnect->setObjectName(QString::fromUtf8("actionDisconnect"));
         actionDisconnect->setFont(font);
+        actionPowerOnAll = new QAction(MainWindow);
+        actionPowerOnAll->setObjectName(QString::fromUtf8("actionPowerOnAll"));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\352\265\264\353\246\274\354\262\264"));
+        font1.setPointSize(12);
+        actionPowerOnAll->setFont(font1);
+        actionPowerOffAll = new QAction(MainWindow);
+        actionPowerOffAll->setObjectName(QString::fromUtf8("actionPowerOffAll"));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("\352\265\264\353\246\274"));
+        font2.setPointSize(12);
+        actionPowerOffAll->setFont(font2);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         groupProjectors = new QGroupBox(centralWidget);
         groupProjectors->setObjectName(QString::fromUtf8("groupProjectors"));
-        groupProjectors->setGeometry(QRect(10, 7, 761, 311));
+        groupProjectors->setGeometry(QRect(10, 7, 761, 331));
         select_all = new QCheckBox(groupProjectors);
         select_all->setObjectName(QString::fromUtf8("select_all"));
         select_all->setGeometry(QRect(190, 30, 87, 20));
@@ -82,15 +96,15 @@ public:
         selection_connect->setGeometry(QRect(40, 60, 81, 26));
         line = new QFrame(groupProjectors);
         line->setObjectName(QString::fromUtf8("line"));
-        line->setGeometry(QRect(160, 20, 16, 281));
+        line->setGeometry(QRect(160, 20, 16, 291));
         line->setFrameShape(QFrame::VLine);
         line->setFrameShadow(QFrame::Sunken);
         label = new QLabel(groupProjectors);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(10, 250, 151, 51));
+        label->setGeometry(QRect(10, 270, 151, 41));
         textBrowser = new QTextBrowser(groupProjectors);
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
-        textBrowser->setGeometry(QRect(10, 100, 151, 141));
+        textBrowser->setGeometry(QRect(10, 100, 151, 151));
         MainWindow->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -100,7 +114,12 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         mainToolBar->addAction(actionConnect);
+        mainToolBar->addSeparator();
         mainToolBar->addAction(actionDisconnect);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(actionPowerOnAll);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(actionPowerOffAll);
 
         retranslateUi(MainWindow);
 
@@ -118,6 +137,14 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionDisconnect->setToolTip(QApplication::translate("MainWindow", "Disconnect All", nullptr));
 #endif // QT_NO_TOOLTIP
+        actionPowerOnAll->setText(QApplication::translate("MainWindow", "PowerOnAll", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionPowerOnAll->setShortcut(QApplication::translate("MainWindow", "Ctrl+N", nullptr));
+#endif // QT_NO_SHORTCUT
+        actionPowerOffAll->setText(QApplication::translate("MainWindow", "PowerOffAll", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionPowerOffAll->setShortcut(QApplication::translate("MainWindow", "Ctrl+F", nullptr));
+#endif // QT_NO_SHORTCUT
         groupProjectors->setTitle(QApplication::translate("MainWindow", "PROJECTORS", nullptr));
         select_all->setText(QApplication::translate("MainWindow", "Select All", nullptr));
         app_title->setText(QApplication::translate("MainWindow", "For selection :", nullptr));
